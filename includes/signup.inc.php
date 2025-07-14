@@ -34,26 +34,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       }
  
   
-     require_once 'config.inc.php';
+     require_once 'config_session.inc.php';
   
 
       if($errors){
          $_SESSION["errors_signup"] = $errors;
+         header("location:../index.php");
       }
 
    }catch(PDOException $e){
       die("Query failed: ".$e->getMessage());
    }
-
-
-   
-
-   // 
-
-   // $query  = "INSERT INTO users (username, email, pwd) VALUES (:username, :email,:pwd);";
-   // $stmt = $pdo->prepare($query);
-
-   //  //hash the password
 
 }else{
    header("location:../index.php");
