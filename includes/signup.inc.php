@@ -12,7 +12,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
       // ERROR HANDLER
-
       $errors = [];
       
 
@@ -36,11 +35,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   
      require_once 'config_session.inc.php';
   
-
+     
       if($errors){
          $_SESSION["errors_signup"] = $errors;
          header("location:../index.php");
-      }
+         die();
+      };
+
+      // no error
+      // create a user 
+      create_user($pdo, $username, $pwd, $email);  // function from controller
+      header("location:../index.php?signup=success");
+      
+      $pdo = null;
+      $pdo = null;
 
    }catch(PDOException $e){
       die("Query failed: ".$e->getMessage());
