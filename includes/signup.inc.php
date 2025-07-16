@@ -48,7 +48,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
          header("location:../index.php");
          die();
-      };
+      }
 
       // no error
       // create a user 

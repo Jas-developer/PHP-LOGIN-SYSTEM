@@ -8,9 +8,9 @@ function signup_inputs()
 //  for username
   if(isset($_SESSION["signup_data"]["username"]) && 
      !isset($_SESSION["errors_signup"]["username_taken"])){
-     echo ' <input type="text" name="username" placeholder="Enter your username" value="'.$_SESSION["signup_data"]["username"].'" >';
+     echo ' <input type="text" style="color:red;" name="username" placeholder="Enter your username" value="'.$_SESSION["signup_data"]["username"].'" >';
      }else {
-     echo ' <input type="text" name="username" placeholder="Enter your username">';
+     echo ' <input type="text" name="username" style="color:red;  placeholder="Enter your username">';
      } 
      echo '<input type="password" name="pwd" placeholder="Enter your password">';
   
@@ -19,11 +19,15 @@ function signup_inputs()
      !isset($_SESSION["errors_signup"]["email_used"]) &&
      !isset($_SESSION["errors_signup"]["invalid_email"])
      ){
-     echo ' <input type="text" name="email" placeholder="Enter your email" value="'.$_SESSION["signup_data"]["email"].'" >';
+     echo ' <input type="text" style="color:red;" name="email" placeholder="Enter your email" value="'.$_SESSION["signup_data"]["email"].'" >';
      }else {
      echo ' <input type="text" name="email" placeholder="Enter your email">';
      }
-}
+
+     echo '<button type="submit"> SIGN UP  </button>';
+
+     check_signup_errors();
+};
 
 function check_signup_errors(){
     if(isset($_SESSION['errors_signup'])){

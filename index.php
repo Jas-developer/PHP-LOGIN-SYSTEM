@@ -33,8 +33,7 @@ require_once "./includes/config_session.inc.php";
             <div class="form-container">
             <h1>SignUp System</h1>
               <form action="./includes/signup.inc.php" method="post">
-                  
-                  <?php check_signup_errors(); ?>
+                  <?php signup_inputs(); ?>
               </form>
 
               
