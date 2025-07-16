@@ -31,12 +31,9 @@ require_once "./includes/config_session.inc.php";
    <hr>
          <div class="login-container">
             <div class="form-container">
-            <h1>Login System</h1>
+            <h1>SignUp System</h1>
               <form action="./includes/signup.inc.php" method="post">
-                  <input type="text" name="username" placeholder="Enter your username">
-                  <input type="password" name="pwd" placeholder="Enter your password">
-                   <input type="email" name="email" placeholder="Enter your email">
-                  <button class="sign-up-button" type="submit"> Sign Up</button>
+                  
                   <?php check_signup_errors(); ?>
               </form>
 
