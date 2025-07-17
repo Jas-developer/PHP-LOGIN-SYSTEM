@@ -19,10 +19,10 @@ function is_input_empty(string $username, string $pwd)
 // and if the password matches
 function is_username_wrong(bool|array $result)
 {
-   if(!result){
-     return true;
+   if(!empty($result)){
+     return false;
    }else{
-    return false;
+     return true;
    }
 }
 

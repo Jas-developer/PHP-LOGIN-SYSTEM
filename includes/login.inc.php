@@ -1,4 +1,4 @@
-<?
+<?php
 
 
 if($_SERVER["REQUEST_METHOD"] === "POST"){
@@ -9,29 +9,28 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     try{
 
         require_once("dbh.inc.php"); //connection from db
-        require_once("./mvc/login_model.inc.php") //will controll/modify db
-        require_once("./mvc/login_controller.inc.php") // will handle the logic
-
+        require_once("./mvc/login_model.inc.php"); //will controll/modify db
+        require_once("./mvc/login_controller.inc.php"); // will handle the logic
         //error handler
         $errors = [];
 
 
         // checking if the error is empty
         if(is_input_empty($username, $pwd)){
-            $errors["empty_input"] = "Fill in all fields";
+            $errors["empty_input"] = "Fill in all fields"; //will stored to error array if there is an error
         }
         
         //grab the user from our model 
-        $result = get_user($pdo, $username);
+        $result = get_user($pdo, $username);  
 
         //check if the username is wrong by just checking if the result is empty/not
         if(is_username_wrong($result)){
-            errors["login_incorrect"] = "Incorrect login info";
+            $errors["login_incorrect"] = "Incorrect login info";
         };
 
         //check if the password is wrong/not similar
         if(!is_username_wrong($result) && !is_password_wrong($pwd, $result["pwd"])){
-           errors["login_incorrect"] = "Incorrect login info";
+           $errors["login_incorrect"] = "Incorrect login info";
         };
 
         require_once "config_session.inc.php";
@@ -49,16 +48,22 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 
         $_SESSION["user_id"] = $result["id"];
         $_SESSION["user_username"] = htmlspecialchars($result["username"]);
+        $_SESSION['last_regeneration'] = time();
 
+        header("Location:../index.php?login=sucess");
+
+        $pdo = null;
+        $stmt = null;
+        die();
         
     }catch(PDOException $e){
-       die("Query Failed":.$e->getMessage());
+       die("Query Failed: ".$e->getMessage());
     }
 
    
 
 } else {
-    header("Location:../index.php")
+    header("Location:../index.php");
     die();
 }
 

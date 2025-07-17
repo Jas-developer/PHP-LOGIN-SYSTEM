@@ -1,5 +1,6 @@
 <?php  
 require_once "./includes/mvc/signup_view.inc.php";
+require_once "./includes/mvc/login_view.inc.php";
 require_once "./includes/config_session.inc.php";
 
 ?>
@@ -26,6 +27,8 @@ require_once "./includes/config_session.inc.php";
                   <input type="password" name="pwd" placeholder="Enter your password">
                   <button class="login-button" type="submit"> Login</button>
               </form>
+
+              <?php check_login_errors(); ?>
         </div>
         </div>
    <hr>
